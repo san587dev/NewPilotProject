@@ -1,0 +1,10 @@
+1621473211451	geckodriver	INFO	Listening on 127.0.0.1:29190
+1621473212767	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofileKOP9tA"
+1621473213336	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofileKOP9tA\\search.json.mozlz4", (void 0)))
+1621473216663	Marionette	INFO	Listening on port 55000
+1621473216969	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://www.sakraworldhospital.com/request-appointment.php, line 116: ReferenceError: $ is not defined
+JavaScript error: https://www.sakraworldhospital.com/request-appointment.php, line 123: ReferenceError: $ is not defined
+JavaScript warning: https://www.sakraworldhospital.com/request-appointment.php, line 3556: unreachable code after return statement
+JavaScript error: , line 0: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
