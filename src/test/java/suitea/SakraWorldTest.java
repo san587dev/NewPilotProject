@@ -26,39 +26,5 @@ public class SakraWorldTest extends TestBase {
 
     }
 
-    public void waitForPageToLoad() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        int i = 0;
 
-        while (i != 10) {
-            String state = (String) js.executeScript("return document.readyState;");
-            System.out.println(state);
-
-            if (state.equals("complete"))
-                break;
-            else
-                wait(3);
-            i++;
-        }
-        //Check for jquery status
-        i = 0;
-        while (i != 0) {
-            Long d = (Long) js.executeScript("return jQuery.active;");
-            System.out.println(d);
-            if (d.longValue() == 0)
-                break;
-            else
-                wait(3);
-            i++;
-        }
-
-    }
-
-    public void wait(int time){
-        try {
-            Thread.sleep(time*2000);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-    }
 }
