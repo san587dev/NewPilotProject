@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class SakraWorldTest extends TestBase {
@@ -41,11 +43,27 @@ public class SakraWorldTest extends TestBase {
         log("Entering Email address of the user");
         driver.findElement(By.id(prop.getProperty("mobile"))).sendKeys(prop.getProperty("phoneNo"));
         log("Entering the mobile phone no");
-
+/*******************validate the fields ******************************/
         /*Selecting the gender with select class*/
         WebElement gender = driver.findElement(By.id(prop.getProperty("genderSelection")));
         Select selectGender = new Select(gender);
         selectGender.selectByVisibleText(prop.getProperty("male"));
+/*
+        if(! isElementPresent(prop.getProperty("dob")))
+            failureAndStopTest("DOB field is not present/Visible");*/
+        /*Selecting the date*/
+        driver.findElement(By.id(prop.getProperty("dob"))).click();
+        selectDate(prop.getProperty("dov_val"));
+
+        //Selecting pref date 1
+        driver.findElement(By.id(prop.getProperty("prefdate_1"))).click();
+        selectDate(prop.getProperty("prefdate_1_value"));
+
+//Selecting pref date 2
+        driver.findElement(By.id(prop.getProperty("prefdate_2"))).click();
+        selectDate(prop.getProperty("prefdate_2_value"));
+
+
     }
 
     /* If the element is (present and not hidden) -true

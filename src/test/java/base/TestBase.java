@@ -26,6 +26,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -205,6 +207,44 @@ public class TestBase {
         try {
             Thread.sleep(time*2000);
         }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void selectDate(String dateValue){
+        //dynamic date selection
+        String monthYearDisplayed = driver.findElement(By.cssSelector(prop.getProperty("monthYear"))).getText();
+        System.out.println("Month Year Displayed " + monthYearDisplayed);
+        SimpleDateFormat sd = new SimpleDateFormat("MM-dd-yyyy");
+        try {
+            Date dateToBeSelected = sd.parse(dateValue);
+            Date currentDate = new Date();
+            String day = new SimpleDateFormat("d").format(dateToBeSelected);
+            System.out.println(day);
+            String month = new SimpleDateFormat("MMMM").format(dateToBeSelected);
+            System.out.println(month.toString());
+            String year = new SimpleDateFormat("yyyy").format(dateToBeSelected);
+            System.out.println(year);
+            String monthYearToBeSelected = month + " " + year;
+            System.out.println("Month Year to be selected " + monthYearToBeSelected);
+
+            while (!monthYearToBeSelected.equals(monthYearDisplayed)) {
+                //Click on forward or back icon
+                if (dateToBeSelected.compareTo(currentDate) == 1) {
+                    //forward icon
+                    driver.findElement(By.xpath(prop.getProperty("calender_forward"))).click();
+                } else if (dateToBeSelected.compareTo(currentDate) == -1) {
+                    //back icon
+                    driver.findElement(By.xpath(prop.getProperty("calender_back"))).click();
+                }
+                monthYearDisplayed = driver.findElement(By.cssSelector(prop.getProperty("monthYear"))).getText();
+                System.out.println("Month Year Displayed " + monthYearDisplayed);
+
+            }
+            //Dat Selection
+            driver.findElement(By.xpath("//a[text()='" + day + "']")).click();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
