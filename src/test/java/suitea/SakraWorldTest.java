@@ -63,6 +63,20 @@ public class SakraWorldTest extends TestBase {
         driver.findElement(By.id(prop.getProperty("prefdate_2"))).click();
         selectDate(prop.getProperty("prefdate_2_value"));
 
+        if (driver.findElement(By.id(prop.getProperty("UHID"))).isDisplayed())
+            failureAndStopTest("UHID is displayed");
+        driver.findElement(By.cssSelector("yes_radio")).click();
+
+        if (!driver.findElement(By.id(prop.getProperty("UHID"))).isDisplayed())
+            failureAndStopTest("UHID is not displayed");
+
+        driver.findElement(By.id("UHID")).sendKeys(prop.getProperty("UHID_value"));
+        driver.findElement(By.cssSelector("no_radio")).click();
+        if (driver.findElement(By.id(prop.getProperty("UHID"))).isDisplayed())
+            failureAndStopTest("UHID is displayed");
+
+
+
 
     }
 
