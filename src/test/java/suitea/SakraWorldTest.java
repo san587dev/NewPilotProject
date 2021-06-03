@@ -1,8 +1,11 @@
 package suitea;
 
 import base.TestBase;
+import org.apache.poi.hssf.record.formula.functions.If;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -25,14 +28,45 @@ public class SakraWorldTest extends TestBase {
         driver.findElement(By.xpath("//*[@id='hv-vc-appointment-pop-up23']/div/div/div[2]/div/p[2]/button[1]")).click();
         log("User clicked on Consulting");
         /*waitForPageToLoad();*/
-        Thread.sleep(10000);
+        Thread.sleep(20000);
+        //Explicit wait **************************
+        //the below line is validating if the element is present or not.
+
+        /*if (!isElementPresent(prop.getProperty("name")))
+            failureAndStopTest("Name field is not present");
+*/
         driver.findElement(By.id(prop.getProperty("name"))).sendKeys(prop.getProperty("first_name"));
         log("Entering Name in the name field");
         driver.findElement(By.id(prop.getProperty("email"))).sendKeys(prop.getProperty("email_id"));
         log("Entering Email address of the user");
         driver.findElement(By.id(prop.getProperty("mobile"))).sendKeys(prop.getProperty("phoneNo"));
         log("Entering the mobile phone no");
+
+        /*Selecting the gender with select class*/
+        WebElement gender = driver.findElement(By.id(prop.getProperty("genderSelection")));
+        Select selectGender = new Select(gender);
+        selectGender.selectByVisibleText(prop.getProperty("male"));
     }
 
+    /* If the element is (present and not hidden) -true
+     * If the element is (not present or hidden ) -false
+     */
+
+    public boolean isElementPresent(String locator) {
+        WebElement e = null;
+        //Presences of the element
+        try {
+            driver.findElement(By.id(locator));
+        } catch (Exception ex) {
+            log("Exception while extracting Object" + ex.getMessage());
+            return false;
+        }
+        //Visibility
+        if (!e.isDisplayed())
+            return false;
+
+        //reaches here -- present and not hidden
+        return true;
+    }
 
 }
