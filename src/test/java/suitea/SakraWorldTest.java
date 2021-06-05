@@ -16,7 +16,7 @@ public class SakraWorldTest extends TestBase {
 
     @Test
     public void appointmentTest() throws InterruptedException {
-        launchBrowser("Chrome");
+        launchBrowser("Mozilla");
         log("Opening the browsers");
         driver.get(prop.getProperty("url"));
         log("Navigated to the given URL");
@@ -34,7 +34,7 @@ public class SakraWorldTest extends TestBase {
         //Explicit wait **************************
         //the below line is validating if the element is present or not.
 
-        /*if (!isElementPresent(prop.getProperty("name")))
+        /*if (isElementPresent(prop.getProperty("name")))
             failureAndStopTest("Name field is not present");
 */
         driver.findElement(By.id(prop.getProperty("name"))).sendKeys(prop.getProperty("first_name"));
@@ -94,7 +94,7 @@ public class SakraWorldTest extends TestBase {
             return false;
         }
         //Visibility
-        if (!e.isDisplayed())
+        if (e.isDisplayed())
             return false;
 
         //reaches here -- present and not hidden
