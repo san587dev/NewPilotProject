@@ -118,6 +118,7 @@ public class TestBase {
         }
 
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         try {
             prop = new Properties();
