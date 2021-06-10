@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import org.apache.commons.io.FileUtils;
+import org.apache.http.client.fluent.Request;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -129,6 +130,9 @@ public class TestBase {
         }
     }
 
+    public void getURL(String url){
+        driver.get(url);
+    }
     public void takeScreenShot(String filePath) {
         // take screenshot
         // save screenshot in reports screenshot folder
@@ -203,16 +207,32 @@ public class TestBase {
         }
 
     }
-
-    public void wait(int time){
+    /*
+     * the below code is used to validate the liks if they are working
+     * You can find the responce codes from this website https://developer.mozilla.org/en-US/docs/Web/HTTP/Status */
+    public boolean validateResponceCode(String url) {
+        int resp_code = 0;
         try {
-            Thread.sleep(time*2000);
-        }catch (InterruptedException e){
+            resp_code = Request.Get(url).execute().returnResponse().getStatusLine().getStatusCode();
+            System.out.println("Respose Code for Given URL " + url + "is -> " + resp_code);
+            if (resp_code == 200)
+                return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public void wait(int time) {
+        try {
+            Thread.sleep(time * 2000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public void selectDate(String dateValue){
+    public void selectDate(String dateValue) {
         //dynamic date selection
         String monthYearDisplayed = driver.findElement(By.cssSelector(prop.getProperty("monthYear"))).getText();
         System.out.println("Month Year Displayed " + monthYearDisplayed);
