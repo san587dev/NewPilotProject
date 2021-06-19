@@ -1,7 +1,8 @@
-1623289977334	geckodriver	INFO	Listening on 127.0.0.1:47962
-1623289978722	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "0" "-foreground" "-no-remote" "-profile" "C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofile28TzNe"
-1623289979150	Marionette	INFO	Marionette enabled
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofile28TzNe\\search.json.mozlz4", (void 0)))
-DevTools listening on ws://localhost:57548/devtools/browser/12447f5a-629f-4268-b75b-e436a50e8b64
-1623289981959	Marionette	INFO	Listening on port 60649
-1623289982425	Marionette	WARN	TLS certificate errors will be ignored for this session
+1623292099545	geckodriver	INFO	Listening on 127.0.0.1:28295
+1623292101044	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "0" "-foreground" "-no-remote" "-profile" "C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofilei9A89u"
+1623292101509	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\santo\\AppData\\Local\\Temp\\rust_mozprofilei9A89u\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:49526/devtools/browser/8d1210b8-1d73-40b4-8f6c-6b38acf61bc6
+1623292104634	Marionette	INFO	Listening on port 62505
+1623292104761	Marionette	WARN	TLS certificate errors will be ignored for this session
+1623292110132	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
