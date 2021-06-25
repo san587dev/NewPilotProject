@@ -2,13 +2,12 @@ package multipleObjectsExtraction;
 
 import base.TestBase;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -48,6 +47,7 @@ public class RadioCheckedScreenshots extends TestBase {
         driver.findElement(By.xpath("//label[text()='Male']/preceding-sibling::input")).click();
         System.out.println(driver.findElement(By.xpath("//label[text()='Male']/preceding-sibling::input")).getAttribute("checked"));
         wait(20);
+        takingScreenShot("C:\\Users\\santo\\SeleniumProject\\PilotProject\\reports\\Screenshots\\sample.jpg");
         driver.quit();
     }
 
@@ -75,5 +75,34 @@ public class RadioCheckedScreenshots extends TestBase {
         }
     }
 
+
+    /*Below is the code were you can take the Screenshot by using Web element*/
+
+    public void getElementScreenshot(WebElement ele, String filePath) {
+        /*Getting an entire page screenshot
+         * */
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        BufferedImage fullImg;
+        try {
+            fullImg = ImageIO.read(screenshot);
+            //Get the location of element on the page
+            Point point = ele.getLocation();
+
+            //Get the width and height of the element
+            int eleWidth = ele.getSize().getWidth();
+            int eleHeight = ele.getSize().getHeight();
+
+            //Crop the entire page screenshot to get only the element screenshot
+            BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
+            ImageIO.write(eleScreenshot, "png", screenshot);
+
+            //Copy the element screenshot to the disk
+            File screenshotLocation = new File(filePath);
+            FileUtils.copyFile(screenshot, screenshotLocation);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
