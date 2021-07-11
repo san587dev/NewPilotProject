@@ -22,11 +22,26 @@ public class Waiting extends TestBase {
         System.out.println(b);
 
         /*The below function is explesit wait for the elements which are not present*/
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        /*WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("_username")));
         wait.until(ExpectedConditions.elementToBeClickable(By.name("_username")));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("_username")));
-        driver.findElement(By.name("_username")).sendKeys("abcd");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("_username")));*/
+        if (isElementPresent("//input[@name='_username']"))
+            driver.findElement(By.name("_username")).sendKeys("John");
 
     }
+
+    public boolean isElementPresent(String elementXpath) {
+
+        try {
+            WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
+            wait1.until(ExpectedConditions.elementToBeClickable(By.xpath(elementXpath)));
+            wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementXpath)));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
 }
